@@ -36,7 +36,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/iview'
+    '@/plugins/iview',
+    '~/plugins/filters',
   ],
   /*
   ** Auto import components
@@ -54,6 +55,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
   /*
   ** Axios module configuration
@@ -74,6 +76,27 @@ export default {
   server: {
     port: 8000, // default: 3000
     host: 'localhost' // default: localhost
-  }
+  },
+  auth: {
+    strategies: {
+      // local: {
+      //   endpoints:{
+      //     login:{url:'login',method:'post'}
+      //   }
+      // }
+      local: {
+        // token: {
+        //   property: "user",
+        //   required: true,
+        //   type: "Bearer",
+        // },
+        endpoints: {
+          login: { url: "/login",method: "post"},
+          logout: { url: "/logout", method: "get" },
+          user: { url: "/user_info", method: "get" },
+        },
+      },
+    }
+  },
 
 }
